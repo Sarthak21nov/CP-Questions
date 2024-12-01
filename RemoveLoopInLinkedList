@@ -1,0 +1,43 @@
+class Solution {
+    public static void removeLoop(Node head) {
+        if (head == null || head.next == null) {
+            return; // No loop possible
+        }
+
+        Node slowptr = head;
+        Node fastptr = head;
+
+        while (fastptr != null && fastptr.next != null) {
+            slowptr = slowptr.next;
+            fastptr = fastptr.next.next;
+
+            // Loop detected
+            if (slowptr == fastptr) {
+                break;
+            }
+        }
+
+        if (fastptr == null || fastptr.next == null) {
+            return;
+        }
+
+        
+        slowptr = head;
+        while (slowptr != fastptr) {
+            slowptr = slowptr.next;
+            fastptr = fastptr.next;
+        }
+
+        
+        Node loopNode = slowptr; // This is the starting node of the loop
+        Node ptr = loopNode;
+
+       
+        while (ptr.next != loopNode) {
+            ptr = ptr.next;
+        }
+
+        
+        ptr.next = null;
+    }
+}
