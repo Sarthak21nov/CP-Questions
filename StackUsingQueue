@@ -1,0 +1,59 @@
+import java.util.Queue;
+import java.util.LinkedList;
+
+class Main {
+    static Queue<Integer> queue = new LinkedList<>();
+    
+    static void push(int x){
+        queue.add(x);
+        int size = queue.size();
+        for(int i = 1; i < size; i++){
+            queue.add(queue.remove());
+        }
+    }
+    
+    static void pop(){
+        if(queue.isEmpty()){
+            System.out.println("Stack Underflow Exception");
+        } else{
+            queue.remove();
+        }
+    }
+    
+    static void peek(){
+        if(queue.isEmpty()){
+            System.out.println("Stck Underflow Exception");
+        } else{
+            System.out.println(queue.peek());
+        }
+    }
+    
+    static void isEmpty(){
+        if(queue.isEmpty()){
+            System.out.println(true);
+        } else{
+            System.out.println(false);
+        }
+    }
+    
+    static void print(){
+        for(int i=0;i<queue.size();i++){
+            int value = queue.remove();
+            System.out.print(value + " ");
+        }
+    }
+    
+    public static void main(String[] args){
+        push(1);
+        push(2);
+        push(3);
+        push(4);
+        push(5);
+        push(6);
+        pop();
+        pop();
+        isEmpty();
+        peek();
+        print();
+    }
+}
