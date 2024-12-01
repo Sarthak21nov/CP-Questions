@@ -1,0 +1,63 @@
+class MyArrayList {
+    private int[] arr;   // Internal array to store elements
+    private int size;    // Number of elements in the list
+
+    // Constructor
+    public MyArrayList() {
+        arr = new int[10]; // Initial capacity
+        size = 0;          // Initial size
+    }
+
+    // Add an element to the ArrayList
+    public void add(int element) {
+        // Resize if the array is full
+        if (size == arr.length) {
+            resize();
+        }
+        arr[size++] = element;
+    }
+
+    // Get an element at a specific index
+    public int get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+        return arr[index];
+    }
+
+    // Remove an element at a specific index
+    public void remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+        // Shift elements to the left
+        for (int i = index; i < size - 1; i++) {
+            arr[i] = arr[i + 1];
+        }
+        size--; // Reduce the size
+    }
+
+    // Get the size of the ArrayList
+    public int size() {
+        return size;
+    }
+
+    // Resize the internal array when it's full
+    private void resize() {
+        int newCapacity = arr.length * 2; // Double the capacity
+        int[] newArr = new int[newCapacity];
+        // Copy old elements to the new array
+        for (int i = 0; i < arr.length; i++) {
+            newArr[i] = arr[i];
+        }
+        arr = newArr; // Update the reference to the new array
+    }
+
+    // Print the elements of the ArrayList
+    public void print() {
+        for (int i = 0; i < size; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
+}
