@@ -1,0 +1,29 @@
+import java.util.Stack;
+
+class Main {
+    static void reverseStack(Stack<Integer> stack){
+        if(stack.isEmpty()){
+            return;
+        }
+        int temp = stack.pop();
+        reverseStack(stack);
+        insertIntoBottom(stack, temp);
+    }
+    static void insertIntoBottom(Stack<Integer> stack, int value){
+        if(stack.isEmpty()){
+            stack.push(value);
+            return;
+        }
+        int temp = stack.pop();
+        insertIntoBottom(stack, value);
+        stack.push(temp);
+    }
+    public static void main(String[] args) {
+        Stack<Integer> stack = new Stack<>();
+        stack.push(1);
+        stack.push(2);
+        stack.push(5);
+        stack.push(4);
+        reverseStack(stack);
+    }
+}
