@@ -17,5 +17,7 @@ class FlattenLL {
             }
             current = current.next;
         }
+
+        return head;
     }
 }
