@@ -21,7 +21,12 @@ class GFG
             return (4 * lastNon0Digit(n / 5) 
                     * dig[n % 10]) % 10;
     }
-     
+
+
+    // FORMULA
+    // if second last digit is even:   (6 * rec_func(n/2) * pre_comp[n%10]) % 10
+    // if second last digit is odd:   (4 * rec_func(n/2) * pre_comp[n%10]) % 10
+    
     // Driver code
     public static void main (String[] args)
     {
